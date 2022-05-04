@@ -1,3 +1,4 @@
+using RentCarStore.Financial.Endpoints;
 using RentCarStore.Financial.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,5 +16,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+FinancialEndpoints.RegisterEndpoints(app);
 
 app.Run();

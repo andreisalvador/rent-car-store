@@ -30,7 +30,7 @@ namespace RentCarStore.Garage.Data.Repositories
         }
 
         public async Task<Car> GetCarById(Guid carId)
-            => await _context.Cars.SingleOrDefaultAsync(c => c.Id == carId);
+            => await _context.Cars.Include(c => c.RentalStatus).SingleOrDefaultAsync(c => c.Id == carId);
 
         public void Update<T>(T entity) where T : class
         {

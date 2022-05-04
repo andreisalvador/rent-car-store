@@ -1,15 +1,45 @@
 version: '3'
 services:
 
+  financial-api:
+    image: andreisalvador/rent-car-store-financial-api:latest
+    container_name: rent-car-store-financial-api
+    build:
+      context: "../src"
+      dockerfile: "./RentCarStore.Financial/Dockerfile"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://*:5114      
+    ports:
+      - "5114:5114"
+    depends_on:
+      - rabbitmq  
+      - postgresdb
+
+  garage-api:
+    image: andreisalvador/rent-car-store-garage-api:latest
+    container_name: rent-car-store-garage-api
+    build:
+      context: "../src"
+      dockerfile: "./RentCarStore.Garage/Dockerfile"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://*:5041   
+    ports:
+      - "5041:5041"
+    depends_on:
+      - financial-api
+
   rabbitmq:
     image: rabbitmq:3.10-rc
-    container_name: rabbit-rent-car-store
+    container_name: rent-car-store-rabbitmq
     ports:
       - "5672:5672"
+      - "16572:16572"
 
   postgresdb:
     image: postgres:13-alpine
-    container_name: postgresql
+    container_name: rent-car-store-postgresql
     environment:
       - POSTGRES_PASSWORD=pgpass
       - POSTGRES_USER=andrei.salvador
@@ -18,7 +48,7 @@ services:
     
   pgadmin:
     image: dpage/pgadmin4
-    container_name: pgadmin-server
+    container_name: rent-car-store-pgadmin
     environment:
       - PGADMIN_DEFAULT_EMAIL=andrei.salvador@teste.com
       - PGADMIN_DEFAULT_PASSWORD=pgadminpass

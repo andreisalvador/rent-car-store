@@ -15,7 +15,7 @@ namespace RentCarStore.Garage.Extensions
             AddServices(services);
             AddBackgroundServices(services);
 
-            return services.AddMessaging("host=localhost"); ;
+            return services.AddMessaging("host=rent-car-store-rabbitmq"); ;
         }
 
         private static void AddBackgroundServices(IServiceCollection services)
@@ -30,7 +30,7 @@ namespace RentCarStore.Garage.Extensions
 
         private static void AddData(IServiceCollection services)
         {
-            services.AddDbContext<GarageContext>(o => o.UseNpgsql("User ID = andrei.salvador;Password=pgpass;Server=localhost;Port=5433;Database=RentCarStoreDb;Integrated Security=true;Pooling=true"));
+            services.AddDbContext<GarageContext>(o => o.UseNpgsql("User ID = andrei.salvador;Password=pgpass;Server=rent-car-store-postgresql;Port=5432;Database=RentCarStoreDb;Integrated Security=true;Pooling=true"));
             services.AddScoped<GarageContext>();
             services.AddScoped<IGarageRepository, GarageRepository>();
         }
