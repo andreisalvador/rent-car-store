@@ -27,9 +27,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RestCarStore.Garage.Service
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RestCarStore.Garage.Domain", "..\src\RestCarStore.Garage.Domain\RestCarStore.Garage.Domain.csproj", "{82521B6B-CED0-4B8B-986B-C3303AC2C325}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RentCarStore.Financial.Services", "..\src\RentCarStore.Financial.Services\RentCarStore.Financial.Services.csproj", "{E41F3381-C9BB-40F8-BB2B-D12E99D1B431}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RentCarStore.Financial.Services", "..\src\RentCarStore.Financial.Services\RentCarStore.Financial.Services.csproj", "{E41F3381-C9BB-40F8-BB2B-D12E99D1B431}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RentCarStore.Financial.Domain", "..\src\RentCarStore.Financial.Domain\RentCarStore.Financial.Domain.csproj", "{9B625E9C-1329-42B9-9896-4584312A4333}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RentCarStore.Financial.Domain", "..\src\RentCarStore.Financial.Domain\RentCarStore.Financial.Domain.csproj", "{9B625E9C-1329-42B9-9896-4584312A4333}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RentCarStore.Garage.Data", "..\src\RentCarStore.Garage.Data\RentCarStore.Garage.Data.csproj", "{1EF6FEB5-A260-4F41-A975-554B60E9454C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RentCarStore.Financial.Data", "..\src\RentCarStore.Financial.Data\RentCarStore.Financial.Data.csproj", "{8C90F1DB-5670-4300-A8E7-9078F78CBA1B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -77,6 +81,14 @@ Global
 		{9B625E9C-1329-42B9-9896-4584312A4333}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9B625E9C-1329-42B9-9896-4584312A4333}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9B625E9C-1329-42B9-9896-4584312A4333}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1EF6FEB5-A260-4F41-A975-554B60E9454C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1EF6FEB5-A260-4F41-A975-554B60E9454C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1EF6FEB5-A260-4F41-A975-554B60E9454C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1EF6FEB5-A260-4F41-A975-554B60E9454C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8C90F1DB-5670-4300-A8E7-9078F78CBA1B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C90F1DB-5670-4300-A8E7-9078F78CBA1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C90F1DB-5670-4300-A8E7-9078F78CBA1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C90F1DB-5670-4300-A8E7-9078F78CBA1B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -92,6 +104,8 @@ Global
 		{82521B6B-CED0-4B8B-986B-C3303AC2C325} = {5193289C-C676-42AA-BD91-CB25B07F589B}
 		{E41F3381-C9BB-40F8-BB2B-D12E99D1B431} = {773C2D23-322B-401B-BCEB-27B092077DC7}
 		{9B625E9C-1329-42B9-9896-4584312A4333} = {773C2D23-322B-401B-BCEB-27B092077DC7}
+		{1EF6FEB5-A260-4F41-A975-554B60E9454C} = {5193289C-C676-42AA-BD91-CB25B07F589B}
+		{8C90F1DB-5670-4300-A8E7-9078F78CBA1B} = {773C2D23-322B-401B-BCEB-27B092077DC7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {86011F11-1090-4F49-87C6-84C6163B54D1}

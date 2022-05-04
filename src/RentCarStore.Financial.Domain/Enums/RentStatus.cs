@@ -2,7 +2,7 @@
 {
     public enum RentStatus
     {
-        In_Progress = 1,
+        InAnalyse = 1,
         Approved,
         Denied,
         Finished

@@ -1,12 +1,10 @@
-using RentCarStore.Financial.Services;
-using RentCartStore.Core.Messaging.Extensions;
+using RentCarStore.Financial.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddMessaging("host=localhost");
-builder.Services.AddHostedService<RentRequestService>();
+builder.Services.ResolveDependencies();
 
 var app = builder.Build();
 

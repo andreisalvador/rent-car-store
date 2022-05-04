@@ -7,22 +7,22 @@ services:
     ports:
       - "5672:5672"
 
-  # postgresdb:
-  #   image: postgres:13-alpine
-  #   container_name: postgresql
-  #   environment:
-  #     - POSTGRES_PASSWORD=pgpass
-  #     - POSTGRES_USER=andrei.salvador
-  #   ports:
-  #     - "5433:5432"
+  postgresdb:
+    image: postgres:13-alpine
+    container_name: postgresql
+    environment:
+      - POSTGRES_PASSWORD=pgpass
+      - POSTGRES_USER=andrei.salvador
+    ports:
+      - "5433:5432"
     
-  # pgadmin:
-  #   image: dpage/pgadmin4
-  #   container_name: pgadmin-server
-  #   environment:
-  #     - PGADMIN_DEFAULT_EMAIL=andrei.salvador@teste.com
-  #     - PGADMIN_DEFAULT_PASSWORD=pgadminpass
-  #   ports:
-  #     - "16543:80"
-  #   depends_on:
-  #     - postgresdb
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin-server
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=andrei.salvador@teste.com
+      - PGADMIN_DEFAULT_PASSWORD=pgadminpass
+    ports:
+      - "16543:80"
+    depends_on:
+      - postgresdb

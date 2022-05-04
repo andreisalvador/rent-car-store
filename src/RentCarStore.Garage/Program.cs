@@ -1,13 +1,11 @@
 using RentCarStore.Garage.Endpoints;
-using RentCartStore.Core.Messaging.Extensions;
-using RestCarStore.Garage.Services;
+using RentCarStore.Garage.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.ResolveDependencies();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddMessaging("host=localhost");
-builder.Services.AddScoped<IGarageServices, GarageServices>();
 
 var app = builder.Build();
 
