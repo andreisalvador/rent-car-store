@@ -1,8 +1,6 @@
 ﻿using EasyNetQ;
 using RentCarStore.Financial.Data.Repositories;
 using RentCarStore.Financial.Domain;
-using RentCarStore.Financial.Domain.Enums;
-using RentCarStore.Financial.Services.Dtos;
 using RentCartStore.Core.Messaging.IntegrationMessages;
 
 namespace RentCarStore.Financial.Services
@@ -12,6 +10,7 @@ namespace RentCarStore.Financial.Services
         Task<RentRecord> Get(Guid id);
         Task<List<RentRecord>> GetByCustomerId(Guid customerId);
         Task ProcessRentRequest(RentRequestIntegrationMessage rentRequest);
+        Task ProcessReturnCar(ReturnCarIntegrationMessage returnCar);
         Task AnalyseRentRequests();
     }
 
@@ -74,7 +73,7 @@ namespace RentCarStore.Financial.Services
             => await _financialRepository.Get(id);
 
         public async Task<List<RentRecord>> GetByCustomerId(Guid customerId)
-            => await _financialRepository.GetByCustomerId(customerId);
+            => await _financialRepository.GetAllByCustomerId(customerId);
 
         public async Task ProcessRentRequest(RentRequestIntegrationMessage rentRequest)
         {
@@ -87,6 +86,13 @@ namespace RentCarStore.Financial.Services
 
             await _financialRepository.Create(rentRecord);
             await _financialRepository.CommitAsync();
+        }
+
+        public async Task ProcessReturnCar(ReturnCarIntegrationMessage returnCar)
+        {
+            RentRecord rentRecord = await _financialRepository.GetByCustomerId(returnCar.CustomerId);
+
+            rentRecord.FinishRent();
         }
     }
 }

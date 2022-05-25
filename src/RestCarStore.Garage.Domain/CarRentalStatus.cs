@@ -10,5 +10,12 @@ namespace RestCarStore.Garage.Domain
         public DateOnly? ReturnsIn { get; set; }
         public Guid CarId { get; set; }
         public Car Car { get; set; }
+
+        public void ReturnCar()
+        {
+            RentedBy = null;
+            PickedUpIn = null;
+            ReturnsIn = null;
+        }
     }
 }

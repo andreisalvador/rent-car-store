@@ -8,8 +8,9 @@ namespace RentCarStore.Financial.Data.Repositories
     {
         Task Create(RentRecord rentRecord);
         Task<RentRecord> Get(Guid id);
-        Task<List<RentRecord>> GetByCustomerId(Guid customerId);
+        Task<List<RentRecord>> GetAllByCustomerId(Guid customerId);
         Task<List<RentRecord>> GetAllUnanalyzedRents();
+        Task<RentRecord> GetByCustomerId(Guid customerId);
     }
 
     public class FinancialRepository : IFinancialRepository
@@ -33,7 +34,10 @@ namespace RentCarStore.Financial.Data.Repositories
         public async Task<List<RentRecord>> GetAllUnanalyzedRents()
             => await _context.RentRecords.Where(r => r.Status == Domain.Enums.RentStatus.InAnalyse).ToListAsync();
 
-        public async Task<List<RentRecord>> GetByCustomerId(Guid customerId)
+        public async Task<List<RentRecord>> GetAllByCustomerId(Guid customerId)
             => await _context.RentRecords.Where(r => r.CustomerId == customerId).ToListAsync();
+
+        public async Task<RentRecord> GetByCustomerId(Guid customerId)
+            => await _context.RentRecords.FirstOrDefaultAsync(r => r.CustomerId == customerId && r.Status == Domain.Enums.RentStatus.Approved);
     }
 }

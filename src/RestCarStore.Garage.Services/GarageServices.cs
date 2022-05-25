@@ -59,6 +59,29 @@ namespace RestCarStore.Garage.Services
         public async Task<Car> Get(Guid id)
             => await _garageRepository.GetCarById(id);
 
+        public async Task ReturnCar(ReturnCarDto returnCarDto)
+        {
+            Car car = await _garageRepository.GetCarById(returnCarDto.CarId);
+
+            if (car.RentalStatus.IsRented)
+            {
+                car.RentalStatus.ReturnCar();
+                _garageRepository.Update<CarRentalStatus>(car.RentalStatus);
+            }
+            else
+                throw new Exception("Unable to return a car that's not rented.");
+
+
+            await _bus.PubSub.PublishAsync(new ReturnCarIntegrationMessage()
+            {
+                CarId = returnCarDto.CarId,
+                CustomerId = returnCarDto.CustomerId,
+                ReturnDate = DateOnly.FromDateTime(DateTime.Now)
+            });
+
+            await _garageRepository.CommitAsync();
+        }
+
         public async Task RequestCar(RentRequestDto rentRequest)
         {
             Car car = await _garageRepository.GetCarById(rentRequest.CarId);

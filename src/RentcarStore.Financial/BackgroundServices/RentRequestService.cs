@@ -21,11 +21,22 @@ namespace RentCarStore.Financial.BackgroundServices
         {
             _logger.LogInformation("Starting rent request processing.");
 
-            _bus.PubSub.SubscribeAsync<RentRequestIntegrationMessage>(nameof(RentRequestIntegrationMessage), ProcessRentRequest);
+            _bus.PubSub.SubscribeAsync<RentRequestIntegrationMessage>(nameof(RentRequestIntegrationMessage), ProcessRentRequest, cancellationToken: stoppingToken);
+
+            _bus.PubSub.SubscribeAsync<ReturnCarIntegrationMessage>(nameof(ReturnCarIntegrationMessage), ProcessReturnCar, cancellationToken: stoppingToken);
 
             AnalyseRentRequests(stoppingToken);
 
             return Task.CompletedTask;
+        }
+
+        private async Task ProcessReturnCar(ReturnCarIntegrationMessage obj)
+        {
+            using (var scope = _serviceProvider.CreateScope())
+            {
+                var financialService = scope.ServiceProvider.GetRequiredService<IFinancialServices>();
+                await financialService.ProcessRentRequest(message);
+            }
         }
 
         private async Task ProcessRentRequest(RentRequestIntegrationMessage message)
